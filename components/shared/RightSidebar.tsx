@@ -4,18 +4,18 @@ import React from "react";
 import RenderTag from "./RenderTag";
 
 const hotQuestions = [
-  { _id: 1, title: "How do I use express as a custopm server in nextJS" },
-  { _id: 2, title: "Cascading delete in SQL Alchemy" },
-  { _id: 3, title: "How to perfectly center a div with tailwind CSS" },
-  { _id: 4, title: "Redux toolkit not updating state as expected" },
+  { _id: "1", title: "How do I use express as a custopm server in nextJS" },
+  { _id: "2", title: "Cascading delete in SQL Alchemy" },
+  { _id: "3", title: "How to perfectly center a div with tailwind CSS" },
+  { _id: "4", title: "Redux toolkit not updating state as expected" },
 ];
 
 const popularTags = [
-  { _id: 1, name: "javascript", totalQuestions: 5 },
-  { _id: 2, name: "react", totalQuestions: 5 },
-  { _id: 3, name: "next", totalQuestions: 5 },
-  { _id: 4, name: "vue", totalQuestions: 2 },
-  { _id: 5, name: "redux", totalQuestions: 10 },
+  { _id: "1", name: "javascript", totalQuestions: 5 },
+  { _id: "2", name: "react", totalQuestions: 5 },
+  { _id: "3", name: "next", totalQuestions: 5 },
+  { _id: "4", name: "vue", totalQuestions: 2 },
+  { _id: "5", name: "redux", totalQuestions: 10 },
 ];
 
 const RightSidebar = () => {
