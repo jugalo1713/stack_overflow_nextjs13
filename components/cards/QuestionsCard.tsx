@@ -5,7 +5,6 @@ import Metric from "../shared/Metric";
 import { GetTimestamp, formatAndDevideNumbers } from "@/lib/utils";
 
 interface Props {
-  key: number;
   _id: number;
   title: string;
   tags: {
@@ -24,7 +23,6 @@ interface Props {
 }
 
 const QuestionsCard = ({
-  key,
   _id,
   title,
   tags,

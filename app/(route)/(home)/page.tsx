@@ -5,48 +5,12 @@ import Filter from "@/components/shared/search/Filter";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
+import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
-const questions = [
-  {
-    key: 1,
-    _id: 1,
-    title: "cascading deletes in SQL",
-    tags: [
-      { _id: "1", name: "python" },
-      { _id: "2", name: "SQL" },
-    ],
-    author: {
-      _id: "1",
-      name: "Julian Gallo",
-      picture: "url_to_picture",
-    },
-    upvotes: 15000,
-    views: 10000,
-    answers: [],
-    createdAt: new Date("2021-09-01T12:00:00.000Z"),
-  },
-  {
-    key: 2,
-    _id: 2,
-    title: "How to center a div",
-    tags: [
-      { _id: "1", name: "css" },
-      { _id: "2", name: "SQL" },
-    ],
-    author: {
-      _id: "2",
-      name: "Julian Gallo",
-      picture: "url_to_picture",
-    },
-    upvotes: 10000000,
-    views: 107600500,
-    answers: [],
-    createdAt: new Date("2021-09-01T12:00:00.000Z"),
-  },
-];
+export default async function Home() {
+  const result = await getQuestions({});
 
-export default function Home() {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -73,8 +37,8 @@ export default function Home() {
       </div>
       <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((item) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((item) => (
             <QuestionsCard
               key={item._id}
               _id={item._id}
