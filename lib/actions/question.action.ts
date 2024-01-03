@@ -24,7 +24,7 @@ export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabase();
     const { title, content, tags, author, path } = params;
-    console.log(params);
+    //console.log(params);
 
     const question = await Question.create({
       title,
