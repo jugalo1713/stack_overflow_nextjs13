@@ -34,15 +34,10 @@ export async function POST(req: Request) {
     });
   }
 
-  console.log("antes del body");
   // Get the body
   const payload = await req.json();
   const body = JSON.stringify(payload);
-  console.log(`body is ${body}`);
-  console.log("svix-id: " + svix_id);
-  console.log("svix-timestamp" + svix_timestamp);
-  console.log("svix-signature" + svix_signature);
-  console.log("SECRTET IS " + WEBHOOK_SECRET);
+
   // Create a new Svix instance with your secret.
   console.log("before wh");
   const wh = new Webhook(WEBHOOK_SECRET);
