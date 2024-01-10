@@ -50,21 +50,29 @@ export async function POST(req: Request) {
 
   // Verify the payload with the headers
   try {
+    console.log("starts evt");
     evt = wh.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
     }) as WebhookEvent;
+    console.log("finishes evt");
   } catch (err) {
+    console.log("Enter to error in evt");
     console.error("Error verifying webhook:", err);
     return new Response("Error occured", {
       status: 400,
     });
   }
 
+  console.log("gets after evt which value is: " + evt);
+
   // Get the ID and type
   const { id } = evt.data;
+  console.log("Id is: " + id);
+
   const eventType = evt.type;
+  console.log("event type is: " + eventType);
 
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
   console.log("Webhook body:", body);
