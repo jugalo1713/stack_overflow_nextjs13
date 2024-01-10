@@ -44,7 +44,9 @@ export async function POST(req: Request) {
   console.log("svix-signature" + svix_signature);
   console.log("SECRTET IS " + WEBHOOK_SECRET);
   // Create a new Svix instance with your secret.
+  console.log("before wh");
   const wh = new Webhook(WEBHOOK_SECRET);
+  console.log("after wh");
 
   console.log("wh is " + wh);
 
