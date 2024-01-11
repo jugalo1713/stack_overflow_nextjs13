@@ -1,15 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import Question from "../database/question.model";
-import Tag from "../database/tag.model";
-import User from "../database/user.model";
+
 import { connectToDatabase } from "../mongoose";
 import {
   CreateQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
 } from "./shared.types";
+import Question from "@/database/question.model";
+import Tag from "@/database/tag.model";
+import User from "@/database/user.model";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -37,7 +38,7 @@ export async function createQuestion(params: CreateQuestionParams) {
     });
     const tagDocuments = [];
 
-    console.log(question);
+    //console.log(question);
 
     for (const tag of tags) {
       const existingtag = await Tag.findOneAndUpdate(
