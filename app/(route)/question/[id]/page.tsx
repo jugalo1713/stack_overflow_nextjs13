@@ -6,6 +6,8 @@ import { title } from "process";
 import Metric from "@/components/shared/Metric";
 import { GetTimestamp, formatAndDevideNumbers } from "@/lib/utils";
 import ParseHTML from "@/components/shared/ParseHTML";
+import RenderTag from "@/components/shared/RenderTag";
+import Answer from "@/components/Forms/Answer";
 
 const page = async ({ params }) => {
   const result = await getQuestionById({ questionId: params.id });
@@ -59,7 +61,18 @@ const page = async ({ params }) => {
           textStyles="small-medium text-dark400_light800"
         />
       </div>
-      <ParseHTML data={result.CONTENT} />
+      <ParseHTML data={result.content} />
+      <div className="mt-8 flex flex-wrap gap-2">
+        {result.tags.map((tag: any) => (
+          <RenderTag
+            key={tag._id}
+            _id={tag._id}
+            name={tag.name}
+            showCount={false}
+          />
+        ))}
+      </div>
+      <Answer />
     </>
   );
 };
