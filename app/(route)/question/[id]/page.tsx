@@ -2,14 +2,13 @@ import { getQuestionById } from "@/lib/actions/question.action";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { title } from "process";
 import Metric from "@/components/shared/Metric";
 import { GetTimestamp, formatAndDevideNumbers } from "@/lib/utils";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 import Answer from "@/components/Forms/Answer";
 
-const page = async ({ params }) => {
+const page = async ({ params }: any) => {
   const result = await getQuestionById({ questionId: params.id });
   //console.log(result);
 
