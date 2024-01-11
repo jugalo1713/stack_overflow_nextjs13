@@ -20,6 +20,7 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: any = "create";
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
 }
 
 const Question = ({ mongouUserId }: Props) => {
+  const { mode } = useTheme();
   const router = useRouter();
   const pathName = usePathname();
   const editorRef = useRef(null);
@@ -76,7 +78,6 @@ const Question = ({ mongouUserId }: Props) => {
   async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
     try {
-
       await createQuestion({
         title: values.title,
         content: values.explanation,
@@ -164,6 +165,8 @@ const Question = ({ mongouUserId }: Props) => {
                       "codesample | bold italic forecolor | alignleft aligncenter " +
                       "alignright alignjustify | bullist numlist",
                     content_style: "body { font-family:Inter; font-size:16px }",
+                    skin: mode === "dark" ? "oxide-dark" : "oxide",
+                    content_css: mode === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>
