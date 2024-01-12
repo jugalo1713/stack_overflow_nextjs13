@@ -32,7 +32,6 @@ interface Props {
 }
 
 const ParseHTML = ({ data }: Props) => {
-  console.log("data: " + data);
   useEffect(() => {
     Prism.highlightAll();
   }, []);
