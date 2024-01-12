@@ -1,9 +1,9 @@
 "use server";
 
+import User from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import { GetAllTagsParams, GetTopInteractedTagsParams } from "./shared.types";
-import User from "../database/user.model";
-import Tag from "../database/tag.model";
+import Tag from "@/database/tag.model";
 
 // export async function getAllUsers(params: GetAllUsersParams) {
 //   try {
