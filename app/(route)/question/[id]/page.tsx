@@ -48,7 +48,7 @@ const page = async ({ params }: any) => {
               type="question"
               itemId={JSON.stringify(result._id)}
               userId={JSON.stringify(mongoUser._id)}
-              upvotes={JSON.stringify(result.upvotes.length)}
+              upvotes={result.upvotes.length}
               hasupVoted={result.upvotes.includes(mongoUser._id)}
               downvotes={result.downvotes.length}
               hasdownVoted={result.downvotes.includes(mongoUser._id)}
