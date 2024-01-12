@@ -14,6 +14,7 @@ interface Props {
   hasdownVoted: boolean;
   hasSaved?: boolean;
 }
+
 const Votes = ({
   type,
   itemId,
