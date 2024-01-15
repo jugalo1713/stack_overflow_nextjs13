@@ -22,6 +22,8 @@ export async function createAnswer(params: CreateAnswerParams) {
     await Question.findByIdAndUpdate(question, {
       $push: { answers: newAnswer._id },
     });
+
+    revalidatePath(path);
   } catch (error) {
     console.error(error);
     throw error;
@@ -77,7 +79,6 @@ export async function upvoteAnswer(params: AnswerVoteParams) {
     throw error;
   }
 }
-
 
 export async function downvoteAnswer(params: AnswerVoteParams) {
   try {
