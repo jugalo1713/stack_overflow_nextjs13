@@ -8,11 +8,11 @@ import {
   DeleteUserParams,
   GetAllUsersParams,
   GetUserByIdParams,
+  ToggleSaveQuestionParams,
   UpdateUserParams,
 } from "./shared.types";
 import User from "@/database/user.model";
 import Question from "@/database/question.model";
-
 
 export async function getUserById(params: GetUserByIdParams) {
   try {
@@ -87,7 +87,41 @@ export async function getAllUsers(params: GetAllUsersParams) {
     connectToDatabase();
     //const { page = 1, pageSize = 20, filter, searchQuery } = params;
     const users = await User.find({}).sort({ joinedAt: -1 });
-    return {users}
+    return { users };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function toggleSaveQuestion(params: ToggleSaveQuestionParams) {
+  try {
+    connectToDatabase();
+    const { userId, questionId, path } = params;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const isQuestionSaved = user.saved.includes(questionId);
+
+    if (isQuestionSaved) {
+      await User.findByIdAndUpdate(
+        userId,
+        { $pull: { saved: questionId } },
+        { new: true }
+      );
+    } else {
+      await User.findByIdAndUpdate(
+        userId,
+        { $addToSet: { saved: questionId } },
+        { new: true }
+      );
+    }
+
+    revalidatePath(path);
   } catch (error) {
     console.error(error);
     throw error;
