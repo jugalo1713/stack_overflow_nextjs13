@@ -86,14 +86,7 @@ export async function upvoteQuestion(params: QuestionVoteParams) {
     connectToDatabase();
 
     const { questionId, userId, hasupVoted, hasdownVoted, path } = params;
-
     let updateQuery = {};
-
-    console.log("-----------  questionId " + questionId);
-    console.log("-----------  userId " + userId);
-    console.log("-----------  hasupVoted " + hasupVoted);
-    console.log("-----------  hasdownVoted " + hasdownVoted);
-    console.log("-----------  path " + path);
 
     if (hasupVoted) {
       updateQuery = { $pull: { upvotes: userId } };
