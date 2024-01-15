@@ -1,7 +1,12 @@
 "use client";
 
+import {
+  downvoteQuestion,
+  upvoteQuestion,
+} from "@/lib/actions/question.action";
 import { formatAndDevideNumbers } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -25,8 +30,57 @@ const Votes = ({
   hasdownVoted,
   hasSaved,
 }: Props) => {
-  const handleVote = (action: string) => {};
-  const handleSave = () => {};
+  const path = usePathname();
+  const router = useRouter();
+  const handleVote = async (action: string) => {
+    if (!userId) {
+      return;
+    }
+
+    if (action === "upvote") {
+      if (type === "question") {
+        await upvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path,
+        });
+      } else if (type === "Answer") {
+        // await upvoteAnswer({
+        //   answerId: JSON.parse(itemId),
+        //   userId: JSON.parse(userId),
+        //   hasupVoted,
+        //   hasdownVoted,
+        //   path,
+        // });
+      }
+
+      return;
+    } else if (action === "downvote") {
+      if (type === "question") {
+        await downvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path,
+        });
+      } else if (type === "Answer") {
+        // await downvoteAnswer({
+        //   answerId: JSON.parse(itemId),
+        //   userId: JSON.parse(userId),
+        //   hasupVoted,
+        //   hasdownVoted,
+        //   path,
+        // });
+      }
+
+      return;
+    }
+  };
+
+  const handleSave = async () => {};
 
   return (
     <>
