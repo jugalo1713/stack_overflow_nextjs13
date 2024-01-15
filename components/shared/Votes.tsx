@@ -1,5 +1,6 @@
 "use client";
 
+import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import {
   downvoteQuestion,
   upvoteQuestion,
@@ -46,14 +47,14 @@ const Votes = ({
           hasdownVoted,
           path,
         });
-      } else if (type === "Answer") {
-        // await upvoteAnswer({
-        //   answerId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path,
-        // });
+      } else if (type === "answer") {
+        await upvoteAnswer({
+          answerId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path,
+        });
       }
 
       return;
@@ -66,14 +67,14 @@ const Votes = ({
           hasdownVoted,
           path,
         });
-      } else if (type === "Answer") {
-        // await downvoteAnswer({
-        //   answerId: JSON.parse(itemId),
-        //   userId: JSON.parse(userId),
-        //   hasupVoted,
-        //   hasdownVoted,
-        //   path,
-        // });
+      } else if (type === "answer") {
+        await downvoteAnswer({
+          answerId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path,
+        });
       }
 
       return;
@@ -126,18 +127,20 @@ const Votes = ({
             </div>
           </div>
         </div>
-        <Image
-          src={
-            hasSaved
-              ? "/assets/icons/star-filled.svg"
-              : "/assets/icons/star-red.svg"
-          }
-          alt="star"
-          width={18}
-          height={18}
-          className="cursor-pointer"
-          onClick={handleSave}
-        />
+        {type === "question" && (
+          <Image
+            src={
+              hasSaved
+                ? "/assets/icons/star-filled.svg"
+                : "/assets/icons/star-red.svg"
+            }
+            alt="star"
+            width={18}
+            height={18}
+            className="cursor-pointer"
+            onClick={handleSave}
+          />
+        )}
       </div>
     </>
   );
