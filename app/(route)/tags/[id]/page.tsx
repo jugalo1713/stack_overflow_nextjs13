@@ -13,8 +13,6 @@ const Page = async ({ params, searchParams }: URLProps) => {
     searchQuery: searchParams.q,
   });
 
-  console.log(result);
-
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">{result.tagTitle}</h1>
@@ -34,8 +32,11 @@ const Page = async ({ params, searchParams }: URLProps) => {
               key={item._id}
               _id={item._id}
               title={item.title}
+              //@ts-ignore
               tags={item.tags}
+              //@ts-ignore
               author={item.author}
+              //@ts-ignore
               upvotes={item.upvotes}
               views={item.views}
               answers={item.answers}
